@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', () =>{
       mimicServerCall()
       .then(() => {
         if(likeBtn.querySelector('.like-glyph').textContent === EMPTY_HEART) {
-          likeBtn.querySelector('.like-glyph').textContent === FULL_HEART;
+          likeBtn.querySelector('.like-glyph').textContent = FULL_HEART;
           likeBtn.classList.add('activated-heart');
         } else {
-          likeBtn.querySelector('.like-glyph').textContent === EMPTY_HEART;
+          likeBtn.querySelector('.like-glyph').textContent = EMPTY_HEART;
           likeBtn.classList.remove('activated-heart');
 
         }
