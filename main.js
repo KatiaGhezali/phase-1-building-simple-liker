@@ -1,6 +1,6 @@
 // Defining text characters for the empty and full hearts for you to use later.
-const EMPTY_HEART = '♡'
-const FULL_HEART = '♥'
+const EMPTY_HEART = '♡' ;
+const FULL_HEART = '♥' ;
 
 // Your JavaScript code goes here!
 
@@ -23,3 +23,35 @@ function mimicServerCall(url="http://mimicServer.example.com", config={}) {
     }, 300);
   });
 }
+
+document.addEventListener('DOMContentLoaded', () =>{
+  const modal = document.getElementById('modal');
+  const modalMessage = document.getElementById('modal-message');
+  const likeButton = document.querySelectorAll('.like');
+
+  likeButton.forEach((likeBtn) => {
+    likeBtn.addEventListener('click' , () =>{
+      mimicServerCall()
+      .then(() => {
+        if(likeBtn.querySelector('.like-glyph').textContent === EMPTY_HEART) {
+          likeBtn.querySelector('.like-glyph').textContent === FULL_HEART;
+          likeBtn.classList.add('activated-heart');
+        } else {
+          likeBtn.querySelector('.like-glyph').textContent === EMPTY_HEART;
+          likeBtn.classList.remove('activated-heart');
+
+        }
+      })
+      .catch((error) => {
+        modal.classList.remove('hidden');
+        modalMessage.textContent = error;
+        setTimeout(() => {
+          modal.classList.add('hidden');
+        }, 3000);
+      });
+    });
+  });
+
+
+
+})
